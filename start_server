@@ -1,0 +1,12 @@
+#!/bin/bash
+echo "Starting advocate_example as `whoami`"
+
+BASEDIR="$(dirname "$(readlink -f "$0")")"
+# Activate the virtual environment
+cd $BASEDIR
+source ../bin/activate
+
+# Programs meant to be run under supervisor should not daemonize themselves (do not use --daemon)
+ADVOCATE_NGINX_CONF="/etc/nginx/sites-available/advocate" exec ../bin/gunicorn -c gunicorn_config.py advocate_example:app \
+  --log-level=info \
+  --log-file=-

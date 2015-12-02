@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Advocate Demo{% endblock title %}
+{% block body %}
+<div class="row">
+<div class="col-lg-6 col-lg-offset-3" style="background:white;">
+    <h1>Advocate Demo</h1>
+    <p>This demo uses <a href="https://github.com/JordanMilne/Advocate">Advocate</a> to prevent HTTP requests from hitting anything on the LAN. Try to see if you can get the contents of <code>/secret/hello.txt</code> from this webserver!</p>
+    <form class="preview-form" id="main-preview">
+        <input class="preview-url form-control" type="text" placeholder="URL to preview">
+        <input class="preview-submit form-control button btn-primary" type="submit" value="Preview!">
+        <br/>
+        <pre class="result"></pre>
+        <div class="error alert alert-danger"></div>
+    </form>
+    <h1>Settings</h1>
+    <h2>Address Validator</h2>
+    <table class="table table-bordered">
+    {% for attr in ("autodetect_local_addresses", "ip_blacklist", "ip_whitelist", "port_whitelist", "port_blacklist", "hostname_blacklist", "allow_ipv6", "allow_teredo", "allow_6to4", "allow_dns64") %}
+        <tr>
+            <td>{{ attr }}</td>
+            <td>{{ validator[attr] }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+    <h2>Network Interfaces</h2>
+    <table class="table table-bordered">
+    {% for interface, ips in interfaces.items() %}
+        <tr>
+            <td>{{ interface }}</td>
+            <td>{{ ips }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+    <h1>Interesting files</h1>
+    {% for filename, file_contents in interesting_files.items() %}
+            <h2>{{ filename }}</h2>
+            <pre>{{ file_contents }}</pre>
+    {% endfor %}
+</div>
+</div>
+{% endblock body %}

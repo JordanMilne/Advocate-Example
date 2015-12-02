@@ -1,0 +1,24 @@
+.preview-form .error {
+    margin: 15px;
+}
+
+body {
+    background-color: #ddd;
+}
+
+.preview-form:not(.has-success) .result {
+    display: none;
+}
+
+.preview-form:not(.has-error) .error {
+    display: none;
+}
+
+
+pre.result {
+    white-space: pre-wrap; /* CSS3 */
+    white-space: -moz-pre-wrap; /* Mozilla, post millennium */
+    white-space: -pre-wrap; /* Opera 4-6 */
+    white-space: -o-pre-wrap; /* Opera 7 */
+    word-wrap: break-word; /* Internet Explorer 5.5+ */
+}
